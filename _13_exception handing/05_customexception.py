@@ -1,0 +1,1 @@
+# make a custom exception named negative number
