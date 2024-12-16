@@ -4,7 +4,10 @@ def main():
     df = pd.read_excel("_17_pandas/marks.xlsx", "Sheet1")
     basics(df)
     maths_basic_stats(df)
+    combined_performace(df)
 
+    # saving back to excel
+    df.to_excel("_17_pandas/new_marks.xlsx", index=False)
 
 def basics(df):   
     # print column headings
@@ -44,7 +47,16 @@ def maths_basic_stats(df):
 
 def combined_performace(df):
     # what is the average marks of the class
-    return  
+    df['TotalMarks'] = (df['Maths'] + df['Science']+ df['English'])/3.0
+
+    # printing name and average marks
+    
+    # student with maximum and minimum performance
+    maximum = df["Name"][df["TotalMarks"]== df['TotalMarks'].max()].tolist()
+    print(f"Maximum percentage attended by {maximum}")
+
+    minimum = df["Name"][df["TotalMarks"] == df['TotalMarks'].min()].tolist()
+    print(f"Miminum percentage was attended by {minimum}")
 
 
 def average_student_list(df):
