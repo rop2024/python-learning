@@ -5,6 +5,7 @@ def main():
     basics(df)
     maths_basic_stats(df)
     combined_performace(df)
+    average_student_list(df)
 
     # saving back to excel
     df.to_excel("_17_pandas/new_marks.xlsx", index=False)
@@ -61,7 +62,19 @@ def combined_performace(df):
 
 def average_student_list(df):
     # find how many students fall between quartile1 and quartile3
-    return
+    
+    # values of quartile 1 and quartile 3
+    quar3 = df['TotalMarks'].quantile(0.75)
+    quar1 = df['TotalMarks'].quantile(0.25)
+
+    list = df['Name'][(df['TotalMarks'] >= quar1) & (df['TotalMarks'] <= quar3)].tolist()
+    
+    print("-----")
+    print("Names -")
+    for name in list:
+        print(f"{name}")
+    
+    print("-----")
 
 
 if __name__ == "__main__":
